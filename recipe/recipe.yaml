@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-parsers/main/schema.json
 
 context:
-  version: "0.57.0"
+  version: "0.57.1"
 
 package:
   name: roborev
@@ -9,7 +9,7 @@ package:
 
 source:
   - url: https://github.com/kenn-io/roborev/archive/refs/tags/v${{ version }}.tar.gz
-    sha256: 677f50c1f9701f321cdfb0450b318d748f06a0e126a8f3edb5268b6362b32aac
+    sha256: 342e5a22b24492ff6db44a9ef552871ef20b4af6395c54a8208a0dc8769e62aa
     target_directory: src
   - url: https://raw.githubusercontent.com/mattn/go-localereader/6bae6c923850ab5e0da9f36f69811ffe17064228/LICENSE
     sha256: dceede03550621e65ec7b79fcba87cf6dbb9d31132a8ae71a8fe8ceec0af7da3
