@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-parsers/main/schema.json
 
 context:
-  version: "0.69.0"
+  version: "0.70.0"
 
 package:
   name: roborev
@@ -9,17 +9,20 @@ package:
 
 source:
   - url: https://github.com/kenn-io/roborev/archive/refs/tags/v${{ version }}.tar.gz
-    sha256: 8b3beba51e4e88f4e5b2a3632a21fc30ab27f9b8da4b945cda4328d9af434496
+    sha256: 9f6d1de36e4f467fe96b3ca172bcd1eb6ef94a04a140845b61481d79fd7ef1c7
     target_directory: src
   - url: https://raw.githubusercontent.com/mattn/go-localereader/6bae6c923850ab5e0da9f36f69811ffe17064228/LICENSE
     sha256: dceede03550621e65ec7b79fcba87cf6dbb9d31132a8ae71a8fe8ceec0af7da3
     file_name: LICENSE-go-localereader
+  - url: https://raw.githubusercontent.com/segmentio/asm/1cfacc81a878d4a07b13f51f2368cd86893d23fa/LICENSE
+    sha256: cca993712df289a5958bdef69031a5dac0f951ac15afeb313f9eeea55ed59443
+    file_name: LICENSE-segmentio-asm
 
 build:
   number: 0
   script:
     - cd src
-    - go-licenses save go.kenn.io/roborev/cmd/roborev --save_path ../library_licenses --ignore github.com/mattn/go-localereader
+    - go-licenses save go.kenn.io/roborev/cmd/roborev --save_path ../library_licenses --ignore github.com/mattn/go-localereader --ignore github.com/segmentio/asm
     - if: unix
       then: go build -v -ldflags="-s -w -X go.kenn.io/roborev/internal/version.Version=${{ version }}" -o $PREFIX/bin/roborev ./cmd/roborev
       else: go build -v -ldflags="-s -w -X go.kenn.io/roborev/internal/version.Version=${{ version }}" -o %LIBRARY_BIN%\roborev.exe ./cmd/roborev
@@ -48,6 +51,7 @@ about:
     - src/LICENSE
     - library_licenses/
     - LICENSE-go-localereader
+    - LICENSE-segmentio-asm
   repository: https://github.com/kenn-io/roborev
 
 extra:
